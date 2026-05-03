@@ -24,4 +24,11 @@ public class Interactable : MonoBehaviour
             interactUI.SetActive(false);
         }
     }
+
+    private void Interact()
+    {
+    //Add you interaction logic here 
+    //e.g open a door, triggere a cutscene, etc.
+    Debug.Log("Interacted with " + gameObject.name);
+    }
 }
