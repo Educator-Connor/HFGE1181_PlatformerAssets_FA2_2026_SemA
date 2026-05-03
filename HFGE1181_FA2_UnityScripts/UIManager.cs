@@ -1,24 +1,19 @@
-using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
     private int playerScore;
-
     [SerializeField]
     private GameObject hudUI;
     [SerializeField]
     private GameObject pauseUI;
-
-
     [SerializeField]
     private TextMeshProUGUI scoreText;
     [SerializeField]
     public GameObject[] heartVisuals;
-
-
 
     private void Awake()
     {
@@ -56,9 +51,7 @@ public class UIManager : MonoBehaviour
                 pauseUI.SetActive(false);
                 Time.timeScale = 1;
             }
-            
         }
-
     }
 
     public void AddScore(int scoreValue)
@@ -75,13 +68,10 @@ public class UIManager : MonoBehaviour
 
     public void InitializeHealthUI(HealthSystem healthSystem)
     {
-        healthSystem = HealthManager.Instance.AccessHealthSystem();
-        
         if (healthSystem.GetHearts() != heartVisuals.Length)
         {
             Debug.Log("Your Hearts at the start of the game should match up to your visuals");
         }
-
         foreach (var heart in heartVisuals)
         {
             heart.SetActive(true);
@@ -110,6 +100,9 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    
-
+    public void LoadMainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
+    }
 }
